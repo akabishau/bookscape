@@ -1,0 +1,32 @@
+require: rubocop-rails
+AllCops:
+  NewCops: disable
+  Exclude:
+    - '**/db/**/*'
+    - '**/node_modules/**/*'
+    - '**/vendor/**/*'
+    - 'bin/**/*'
+    - 'spec/**/*'
+    - 'config/initializers/*'
+    - 'lib/tasks/**/*'
+    - '**/*.erb'
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# to silence warning for now
+Style/Documentation:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/WordArray:
+  EnforcedStyle: brackets
+  MinSize: 5
