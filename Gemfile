@@ -73,3 +73,7 @@ end
 
 
 gem 'devise'
+gem "rubocop", groups: [:development]
+gem "rubocop-rails", groups: [:development]
+gem "solargraph", groups: [:development]
+gem "solargraph-rails", groups: [:development]

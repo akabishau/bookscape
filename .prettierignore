@@ -1,0 +1,28 @@
+# Ruby files (handled by RuboCop)
+**/*.rb
+Gemfile
+Gemfile.lock
+Rakefile
+config.ru
+
+# Configuration files
+config/**
+bin/**
+db/**
+lib/**
+log/**
+tmp/**
+storage/**
+public/**
+
+# Auto-generated files
+node_modules/
+vendor/
+coverage/
+*.lock
+*.log
+*.sqlite3
+*.sqlite3-journal
+
+# Ignore specific files
+.DS_Store
