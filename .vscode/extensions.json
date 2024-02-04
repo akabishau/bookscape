@@ -3,6 +3,7 @@
     "castwide.solargraph",
     "kaiwood.endwise",
     "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "shopify.ruby-lsp"
   ]
 }
