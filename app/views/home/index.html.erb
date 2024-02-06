@@ -1,2 +1,12 @@
 <%= render "layouts/header" %>
 <%= render 'quote' %>
+<% @books_by_status.each do |status, books| %>
+  <section>
+    <h2><%= status.capitalize %></h2>
+    <ul>
+      <% books.each do |book| %>
+        <li><%= book.title %></li>
+      <% end %>
+    </ul>
+  </section>
+<% end %>
