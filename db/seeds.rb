@@ -1,7 +1,17 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+user = User.find_or_create_by!(email: "test1@email.com") do |user|
+  user.password = "test1@email.com"
+  user.password_confirmation = "test1@email.com"
+end
+
+statuses = ["want_to_read", "reading", "read"]
+
+15.times do |i|
+  book = Book.find_or_create_by!(google_id: "google#{i + 1}") do |book|
+    book.title = "Book #{i + 1}"
+    book.authors = ["Author #{i + 1}"]
+  end
+
+  UserBook.find_or_create_by!(user:, book:) do |user_book|
+    user_book.status = statuses.sample
+  end
+end

@@ -4,6 +4,6 @@
     "kaiwood.endwise",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "shopify.ruby-lsp"
+    "aliariff.vscode-erb-beautify"
   ]
 }

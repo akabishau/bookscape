@@ -35,10 +35,6 @@
     "**/.next": true
   },
 
-  // "files.associations": {
-  //   "*.html.erb": "html"
-  // },
-
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
@@ -54,5 +50,14 @@
 
   "[ruby]": {
     "editor.defaultFormatter": "castwide.solargraph"
+  },
+
+  "files.associations": {
+    "*.html.erb": "erb"
+  },
+
+  "[erb]": {
+    "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
+    "editor.formatOnSave": true
   }
 }
