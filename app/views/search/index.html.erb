@@ -6,7 +6,15 @@
   <%= form.submit "Search" %>
 <% end %>
 <% if @results %>
-  <% @results["items"].each do |item| %>
-    <p><%= item["volumeInfo"]["title"] %></p>
+  <% @results["items"].each do |book| %>
+    <div class="book-card">
+      <h2><%= book["volumeInfo"]["title"] %></h2>
+      <p><%= book["volumeInfo"]["authors"].join(", ") if book["volumeInfo"]["authors"] %></p>
+      <p><%= book["volumeInfo"]["categories"].join(", ") if book["volumeInfo"]["categories"] %></p>
+      <p><%= book["volumeInfo"]["description"] %></p>
+      <% if book["volumeInfo"]["imageLinks"] && book["volumeInfo"]["imageLinks"]["thumbnail"] %>
+        <img src="<%= book["volumeInfo"]["imageLinks"]["thumbnail"] %>" alt="<%= book["volumeInfo"]["title"] %>">
+      <% end %>
+    </div>
   <% end %>
 <% end %>
