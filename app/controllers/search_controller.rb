@@ -12,7 +12,7 @@ class SearchController < ApplicationController
       begin
         json_data = JSON.parse(response.body)
         books = GoogleBooksParser.parse(json_data)
-        @books = books.map { |book| SearchBookPresenter.new(book) }
+        @books = books.map { |book| SearchBookPresenter.new(book, current_user.books) }
       rescue JSON::ParserError
         flash[:alert] = "There was an error parsing the search results. Please try again."
       end
