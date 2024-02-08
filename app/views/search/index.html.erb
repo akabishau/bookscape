@@ -1,0 +1,15 @@
+<h1>Search#index</h1>
+<p>Find me in app/views/search/index.html.erb</p>
+<%= form_with url: search_path, method: :get do |form| %>
+  <%= form.label :query, "Search for books:" %>
+  <%= form.text_field :query, placeholder: "Enter a book title or author..." %>
+  <%= form.submit "Search" %>
+<% end %>
+<% if @books %>
+  <% @books.each do |book| %>
+    <div class="book-card">
+      <h4><%= book.title %></h4>
+      <p><%= book.authors %></p>
+    </div>
+  <% end %>
+<% end %>
