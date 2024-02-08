@@ -1,20 +1,26 @@
 require "httparty"
 
 class SearchController < ApplicationController
+  before_action :init_service, only: :index
+
   # GET /search - display the search form
   def index
+    # :query is the name of the input field in the form
     return unless params[:query].present?
 
-    @results = perform_search(params[:query])
+    response = @service.search_books
+
+    if response.success?
+      @results = JSON.parse(response.body)
+    else
+      flash[:alert] = "There was an error with the search. Please try again."
+      # error handling
+    end
   end
 
   private
 
-  def perform_search(query)
-    base_url = "https://www.googleapis.com/books/v1/volumes"
-    api_key = ENV["GOOGLE_BOOKS_API_KEY"]
-    url = "#{base_url}?q=#{URI.encode_www_form_component(query)}&key=#{api_key}"
-    response = HTTParty.get(url)
-    JSON.parse(response.body)
+  def init_service
+    @service = GoogleBooksService.new(params[:query])
   end
 end
