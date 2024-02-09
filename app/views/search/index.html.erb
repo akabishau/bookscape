@@ -6,10 +6,25 @@
   <%= form.submit "Search" %>
 <% end %>
 <% if @books %>
-  <% @books.each do |book| %>
+  <% @books.each do |book_hash| %>
     <div class="book-card">
-      <h4><%= book.title %></h4>
-      <p><%= book.authors %></p>
-      <p><%= book.reading_status %></p>
-    <% end %>
+      <h4><%= book_hash[:book][:title] %></h4>
+      <p><%= book_hash[:book][:authors] %></p>
+      <p><%= book_hash[:book][:google_id] %></p>
+      <%= form_with url: books_path, method: :post, local: true do |form| %>
+        <%= form.hidden_field :title, value: book_hash[:book][:title] %>
+        <% book_hash[:book][:authors].each do |author| %>
+          <%= form.hidden_field :authors, multiple: true, value: author %>
+        <% end %>
+        <%= form.hidden_field :google_id, value: book_hash[:book][:google_id] %>
+        <%= form.label :status, book_hash[:status] %>
+        <%= form.select :status, options_for_select([
+            ["Add Book ..."],
+            ["Want to Read", "want_to_read"],
+            ["Reading", "reading"],
+            ["Read", "read"],
+          ], book_hash[:status]), {}, { onchange: "this.form.submit();" } %>
+      <% end %>
+    </div>
   <% end %>
+<% end %>
