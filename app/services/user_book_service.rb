@@ -35,15 +35,15 @@ class UserBookService
     end
   end
 
-  private_class_method :find_by_google_id, :user_has_book?
-
   def self.find_by_google_id(user, google_id)
     Rails.logger.info("Finding user book with GoogleID: #{google_id}")
     book = Book.find_by(google_id:)
     user.user_books.find_by(book:)
   end
 
-  def user_has_book?(user, book)
+  def self.user_has_book?(user, book)
     user.user_books.exists?(book:)
   end
+
+  private_class_method :find_by_google_id, :user_has_book?
 end
