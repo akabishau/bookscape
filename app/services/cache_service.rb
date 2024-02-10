@@ -25,8 +25,6 @@ class CacheService
     value
   end
 
-  private_class_method :generate_key, :cache_enabled?
-
   def self.generate_key(user, scenario)
     [user.id, scenario].join("_")
   end
@@ -34,4 +32,6 @@ class CacheService
   def self.cache_enabled?
     !Rails.cache.instance_of?(ActiveSupport::Cache::NullStore)
   end
+
+  private_class_method :generate_key, :cache_enabled?
 end
