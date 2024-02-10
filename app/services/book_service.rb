@@ -8,7 +8,8 @@ class BookService
     book = Book.create(
       google_id: book_params[:google_id],
       title: book_params[:title],
-      authors: book_params[:authors]
+      authors: book_params[:authors],
+      main_category: book_params[:main_category]
     )
     Rails.logger.info("BOOK ERRORS: #{book.errors.full_messages}") if book.errors.any?
     book

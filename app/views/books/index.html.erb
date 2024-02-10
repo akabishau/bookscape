@@ -1,3 +1,8 @@
 <% @books_with_status.each do |book| %>
-  <p><%= book[:title] %> - <%= book[:status] %> - <%= book[:authors] %></p>
+  <p>
+    <%= book[:title] %> -
+    <%= book[:status] %> -
+    <%= book[:authors] %> -
+    <%= book[:main_category] %>
+  </p>
 <% end %>

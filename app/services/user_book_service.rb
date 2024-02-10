@@ -30,7 +30,8 @@ class UserBookService
         id: user_book.book.id,
         title: user_book.book.title,
         authors: user_book.book.authors,
-        status: user_book.status
+        status: user_book.status,
+        main_category: user_book.book.main_category
       }
     end
   end

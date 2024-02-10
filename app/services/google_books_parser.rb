@@ -8,7 +8,8 @@ class GoogleBooksParser
       book_data = {
         google_id:,
         title: item["volumeInfo"]["title"],
-        authors: item["volumeInfo"]["authors"] || ["Unknown"]
+        authors: item["volumeInfo"]["authors"] || ["Unknown"],
+        main_category: item["volumeInfo"]["categories"] || []
       }
 
       user_book = user_books[google_id]
