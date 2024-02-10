@@ -5,11 +5,20 @@
   <%= form.text_field :query, placeholder: "Enter a book title or author..." %>
   <%= form.submit "Search" %>
 <% end %>
-<% if @books %>
-  <% @books.each do |book| %>
+<% if @books_data %>
+  <% @books_data.each do |book| %>
     <div class="book-card">
-      <h4><%= book.title %></h4>
-      <p><%= book.authors %></p>
+      <h4><%= book[:title] %></h4>
+      <p><%= book[:authors] %></p>
+      <p><%= book[:google_id] %></p>
+      <%= form_with url: books_path, method: :post, local: true do |form| %>
+        <%= form.hidden_field :google_id, value: book[:google_id], name: "book[google_id]" %>
+        <%= form.collection_select :status,
+          UserBook.statuses.keys.map { |status| [status.titleize, status] },
+          :last, :first, {include_blank: "Add Book ...", selected: book[:status]},
+          { onchange: "this.form.submit();", name: "book[status]" }
+        %>
+      <% end %>
     </div>
   <% end %>
 <% end %>

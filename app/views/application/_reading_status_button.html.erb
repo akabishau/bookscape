@@ -1,0 +1,11 @@
+<%= form_with url: books_path, scope: :book, method: :post, local: true do |form| %>
+  <%= form.hidden_field :google_id, value: book.google_id %>
+  <%= form.hidden_field :title, value: book.title %>
+  <%= form.hidden_field :authors, value: book.authors %>
+  <%= form.label :status, "temp test" %>
+  <%= form.select :status, options_for_select([
+      ["Want to Read", 0],
+      ["Reading", 1],
+      ["Read", 2],
+    ]), {}, { onchange: "this.form.submit();" } %>
+<% end %>

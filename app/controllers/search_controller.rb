@@ -4,20 +4,16 @@ class SearchController < ApplicationController
   # GET /search - display the search form
   def index
     # :query is the name of the input field in the form
-    return unless params[:query].present?
+    return if params[:query].blank?
 
     response = GoogleBooksApi.new.search_books(params[:query])
-    puts response.body
     if response.success?
-      begin
-        json_data = JSON.parse(response.body)
-        books = GoogleBooksParser.parse(json_data)
-        @books = books.map { |book| SearchBookPresenter.new(book) }
-      rescue JSON::ParserError
-        flash[:alert] = "There was an error parsing the search results. Please try again."
-      end
+      json_data = JSON.parse(response.body)
+      @books_data = GoogleBooksParser.parse(json_data, current_user)
+      CacheService.cache(current_user, CacheScenarios::BOOK_SEARCH, @books_data)
     else
-      flash[:alert] = "There was an error with the search. Please try again."
+      redirect_to :search
+      Rails.logger.error("Failed to fetch books from Google Books API: #{response.code} - #{response.body}")
     end
   end
 end

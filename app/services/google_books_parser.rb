@@ -1,16 +1,20 @@
 class GoogleBooksParser
-  def self.parse(json)
+  def self.parse(json, user)
+    # fetches all the user's books at once
+    user_books = user.user_books.includes(:book).index_by { |ub| ub.book.google_id }
+
     json["items"].map do |item|
-      # REVIEW: this approach of parsing Book objects
-      book = Book.new(
-        google_id: item["id"],
+      google_id = item["id"]
+      book_data = {
+        google_id:,
         title: item["volumeInfo"]["title"],
         authors: item["volumeInfo"]["authors"] || ["Unknown"]
-      )
+      }
 
-      # TODO: need to somehow check user-book association to set the button text
-      # book if book.valid? # doesn't fit business logic
-      book
-    end.compact
+      user_book = user_books[google_id]
+      book_data[:status] = user_book ? user_book.status : nil
+
+      book_data
+    end
   end
 end
