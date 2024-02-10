@@ -1,17 +1,14 @@
 class BooksController < ApplicationController
   def create
-    cache_key = "books_search_#{current_user.id}"
-    search_books = Rails.cache.read(cache_key)
-    Rails.logger.info("Reading from cache with key: #{cache_key}")
-    Rails.logger.info("Data: #{search_books}")
+    search_books = CacheService.fetch(current_user, CacheScenarios::BOOK_SEARCH)
 
     if search_books
       book_info = search_books.find { |book| book[:google_id] == book_params[:google_id] }
 
       handle_reading_status_change(book_params, book_info)
-
     else
-      redirect_to :search, alert: "Please search for a book before adding it to your library."
+      redirect_to :search
+      Rails.logger.error("Failed to find book in cache: #{book_params[:google_id]}")
     end
   end
 
