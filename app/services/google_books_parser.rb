@@ -9,7 +9,8 @@ class GoogleBooksParser
         google_id:,
         title: item["volumeInfo"]["title"],
         authors: item["volumeInfo"]["authors"] || ["Unknown"],
-        main_category: item["volumeInfo"]["categories"] || []
+        main_category: item["volumeInfo"]["categories"] || [],
+        description: item["volumeInfo"]["description"] || "No description available"
       }
 
       user_book = user_books[google_id]

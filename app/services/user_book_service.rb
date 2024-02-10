@@ -31,7 +31,8 @@ class UserBookService
         title: user_book.book.title,
         authors: user_book.book.authors,
         status: user_book.status,
-        main_category: user_book.book.main_category
+        main_category: user_book.book.main_category,
+        description: user_book.book.description
       }
     end
   end

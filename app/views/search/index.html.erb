@@ -12,6 +12,7 @@
       <p><%= book[:authors] %></p>
       <p><%= book[:google_id] %></p>
       <p><%= book[:main_category] %></p>
+      <p><%= book[:description] %></p>
       <%= form_with url: books_path, method: :post, local: true do |form| %>
         <%= form.hidden_field :google_id, value: book[:google_id], name: "book[google_id]" %>
         <%= form.collection_select :status,

@@ -9,7 +9,8 @@ class BookService
       google_id: book_params[:google_id],
       title: book_params[:title],
       authors: book_params[:authors],
-      main_category: book_params[:main_category]
+      main_category: book_params[:main_category],
+      description: book_params[:description]
     )
     Rails.logger.info("BOOK ERRORS: #{book.errors.full_messages}") if book.errors.any?
     book
