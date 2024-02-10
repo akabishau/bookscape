@@ -1,10 +1,4 @@
 class UserBookService
-  # error handling is not implemented
-  def self.add_book_to_user(user, book_params, status)
-    book = BookService.find_or_create_book(book_params)
-    UserBook.create(user:, book:, status:)
-  end
-
   def self.add_or_update_status(user, book_params, book_info)
     Rails.logger.info("Adding or updating status for user: #{user.id}, book: #{book_params[:google_id]}")
     user_book = find_by_google_id(user, book_params[:google_id])
@@ -23,18 +17,13 @@ class UserBookService
     end
   end
 
-  def update_status(user, book, status)
-    user.user_books.find_by(book:).update(status:)
-  end
-
   def self.remove_book(user, google_id)
     book = Book.find_by(google_id:)
     user.user_books.find_by(book:)&.destroy
     # &. is safe navigation operator
   end
 
-  # books page currently shows all books with their status
-  # review - not complete
+  # TODO: books page currently shows all books with their status - review
   def self.all_user_books_with_status(user)
     user.user_books.includes(:book).map do |user_book|
       {
@@ -46,7 +35,7 @@ class UserBookService
     end
   end
 
-  private
+  private_class_method :find_by_google_id, :user_has_book?
 
   def self.find_by_google_id(user, google_id)
     Rails.logger.info("Finding user book with GoogleID: #{google_id}")
@@ -54,7 +43,6 @@ class UserBookService
     user.user_books.find_by(book:)
   end
 
-  # does user have a book?
   def user_has_book?(user, book)
     user.user_books.exists?(book:)
   end
