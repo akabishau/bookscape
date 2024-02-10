@@ -4,12 +4,12 @@ class BooksController < ApplicationController
     search_books = Rails.cache.read(cache_key)
     Rails.logger.info("Reading from cache with key: #{cache_key}")
     Rails.logger.info("Data: #{search_books}")
+
     if search_books
       book_info = search_books.find { |book| book[:google_id] == book_params[:google_id] }
 
-      book = BookService.find_or_create_book(book_info)
+      handle_reading_status_change(book_params, book_info)
 
-      UserBook.create(user: current_user, book:, status: book_params[:status])
     else
       redirect_to :search, alert: "Please search for a book before adding it to your library."
     end
@@ -23,5 +23,14 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:google_id, :status)
+  end
+
+  def handle_reading_status_change(book_params, book_info)
+    # case book_params[:status]
+    if UserBook.statuses.keys.include?(book_params[:status])
+      UserBookService.add_or_update_status(current_user, book_params, book_info)
+    else
+      UserBookService.remove_book(current_user, book_params[:google_id])
+    end
   end
 end
