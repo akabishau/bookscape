@@ -71,6 +71,8 @@ group :test do
 end
 
 gem "devise"
+gem "dotenv-rails", groups: [:development, :test]
+gem "httparty"
 gem "rubocop", groups: [:development]
 gem "rubocop-rails", groups: [:development]
 gem "solargraph", groups: [:development]
