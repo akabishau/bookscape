@@ -7,12 +7,8 @@ class BooksController < ApplicationController
     if search_books
       book_info = search_books.find { |book| book[:google_id] == book_params[:google_id] }
 
-      book = Book.find_by(google_id: book_params[:google_id])
-      if book.nil?
-        puts "BOOK INFO: #{book_info.inspect} - New Book! Creating..."
-        book = Book.create(google_id: book_info[:google_id], title: book_info[:title], authors: book_info[:authors])
-        puts "BOOK ERRORS: #{book.errors.full_messages}" if book.errors.any?
-      end
+      book = BookService.find_or_create_book(book_info)
+
       UserBook.create(user: current_user, book:, status: book_params[:status])
     else
       redirect_to :search, alert: "Please search for a book before adding it to your library."
