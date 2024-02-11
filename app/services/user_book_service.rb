@@ -26,13 +26,15 @@ class UserBookService
   # TODO: books page currently shows all books with their status - review
   def self.all_user_books_with_status(user)
     user.user_books.includes(:book).map do |user_book|
+      Rails.logger.debug "Book ID: #{user_book.book.id}, Cover URL: #{user_book.book.cover_url_thumbnail}"
       {
         id: user_book.book.id,
         title: user_book.book.title,
         authors: user_book.book.authors,
         status: user_book.status,
         main_category: user_book.book.main_category,
-        description: user_book.book.description
+        description: user_book.book.description,
+        cover_url_thumbnail: user_book.book.cover_url_thumbnail
       }
     end
   end

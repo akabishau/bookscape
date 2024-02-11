@@ -1,4 +1,5 @@
 <% @books_with_status.each do |book| %>
+  <p><%= image_tag(book[:cover_url_thumbnail], alt: book[:title]) %></p>
   <p>
     <%= book[:title] %> -
     <%= book[:status] %> -

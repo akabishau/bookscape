@@ -13,6 +13,7 @@
       <p><%= book[:google_id] %></p>
       <p><%= book[:main_category] %></p>
       <p><%= book[:description] %></p>
+      <p><%= image_tag(book[:cover_url_thumbnail], alt: book[:title]) %></p>
       <%= form_with url: books_path, method: :post, local: true do |form| %>
         <%= form.hidden_field :google_id, value: book[:google_id], name: "book[google_id]" %>
         <%= form.collection_select :status,

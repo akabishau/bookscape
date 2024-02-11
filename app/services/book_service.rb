@@ -10,7 +10,8 @@ class BookService
       title: book_params[:title],
       authors: book_params[:authors],
       main_category: book_params[:main_category],
-      description: book_params[:description]
+      description: book_params[:description],
+      cover_url_thumbnail: book_params[:cover_url_thumbnail]
     )
     Rails.logger.info("BOOK ERRORS: #{book.errors.full_messages}") if book.errors.any?
     book
