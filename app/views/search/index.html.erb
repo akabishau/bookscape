@@ -1,27 +1,39 @@
-<h1>Search#index</h1>
-<p>Find me in app/views/search/index.html.erb</p>
-<%= form_with url: search_path, method: :get do |form| %>
-  <%= form.label :query, "Search for books:" %>
-  <%= form.text_field :query, placeholder: "Enter a book title or author..." %>
-  <%= form.submit "Search" %>
-<% end %>
-<% if @books_data %>
-  <% @books_data.each do |book| %>
-    <div class="book-card">
-      <h4><%= book[:title] %></h4>
-      <p><%= book[:authors] %></p>
-      <p><%= book[:google_id] %></p>
-      <p><%= book[:main_category] %></p>
-      <p><%= book[:description] %></p>
-      <p><%= image_tag(book[:cover_url_thumbnail], alt: book[:title]) %></p>
-      <%= form_with url: books_path, method: :post, local: true do |form| %>
-        <%= form.hidden_field :google_id, value: book[:google_id], name: "book[google_id]" %>
-        <%= form.collection_select :status,
+<div class="form-container">
+  <%= form_with url: search_path, method: :get, class: "search-form" do |form| %>
+    <%= form.text_field :query, placeholder: "Enter a book title or author...", class: "search-input" %>
+    <%= form.submit "Search", class: "search-button"%>
+  <% end %>
+</div>
+<div class="search-results">
+  <% if @books_data %>
+    <% @books_data.each do |book| %>
+      <div class="book-card" data-google-id="<%= book[:google_id] %>">
+        <div class="book-image">
+          <%= image_tag(book[:cover_url_thumbnail], alt: book[:title]) %>
+        </div>
+        <div class="book-info">
+          <h2 class="book-title"><%= book[:title] %></h2>
+          <h3 class="book-author"><%= book[:authors].join(", ") %></h3>
+          <section class="book-genre">
+            <h4>Genre: </h4>
+            <p><%= book[:main_category].join(", ") %></p>
+          </section>
+          <section class="book-description">
+            <h4>About this Book:</h4>
+            <p><%= book[:description] %></p>
+          </section>
+          <div>
+            <%= form_with url: books_path, method: :post, local: true do |form| %>
+              <%= form.hidden_field :google_id, value: book[:google_id], name: "book[google_id]" %>
+              <%= form.collection_select :status,
           UserBook.statuses.keys.map { |status| [status.titleize, status] },
           :last, :first, {include_blank: "Add Book ...", selected: book[:status]},
           { onchange: "this.form.submit();", name: "book[status]" }
         %>
-      <% end %>
-    </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
