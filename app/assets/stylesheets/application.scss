@@ -1,3 +1,43 @@
+@import 'reset';
 @import 'variables';
 @import 'header';
 @import 'quote';
+@import 'search';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+// Base container styles
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto; // Centers the container
+  padding: 0 15px;
+}
+
+// Responsive adjustments
+@media (max-width: 1200px) {
+  .container {
+    max-width: 960px; // Slightly narrower for medium screens
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 720px; // More narrow for small-medium screens
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%; // Full width for small screens
+    padding: 0 10px; // Reduce padding on smaller screens
+  }
+}
