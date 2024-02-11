@@ -7,12 +7,14 @@ class GoogleBooksParser
       google_id = item["id"]
       # TODO: temp fix for missing thumbnail, can be other fields - consider not include in the results invalid books
       image_links = item["volumeInfo"]["imageLinks"] || {}
+      search_info = item["searchInfo"] || {}
       book_data = {
         google_id:,
         title: item["volumeInfo"]["title"],
         authors: item["volumeInfo"]["authors"] || ["Unknown"],
         main_category: item["volumeInfo"]["categories"] || [],
         description: item["volumeInfo"]["description"] || "No description available",
+        short_description: search_info["textSnippet"] || "No description available",
         cover_url_thumbnail: image_links["thumbnail"] || "https://via.placeholder.com/128x196?text=No+cover"
       }
 

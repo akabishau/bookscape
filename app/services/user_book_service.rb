@@ -34,6 +34,7 @@ class UserBookService
         status: user_book.status,
         main_category: user_book.book.main_category,
         description: user_book.book.description,
+        short_description: user_book.book.short_description,
         cover_url_thumbnail: user_book.book.cover_url_thumbnail
       }
     end

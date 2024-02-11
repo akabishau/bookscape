@@ -20,7 +20,7 @@
           </section>
           <section class="book-description">
             <h4>About this Book:</h4>
-            <p><%= book[:description] %></p>
+            <p><%= book[:short_description] %></p>
           </section>
           <div>
             <%= form_with url: books_path, method: :post, local: true do |form| %>

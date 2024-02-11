@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_10_203127) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_11_210418) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_10_203127) do
     t.string "main_category", default: [], array: true
     t.text "description"
     t.string "cover_url_thumbnail"
+    t.string "short_description"
     t.index ["google_id"], name: "index_books_on_google_id", unique: true
   end
 
