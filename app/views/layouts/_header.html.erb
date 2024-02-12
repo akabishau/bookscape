@@ -1,14 +1,29 @@
 <header>
   <div class="header-container">
-    <div class="logo">
+    <div>
       <%= link_to root_path do %>
-        <%= image_tag 'logo.png', alt: 'Bookscape Logo' %>
+        <%= image_tag "logo.png", alt: "Bookscape Logo", class: "logo-img" %>
       <% end %>
     </div>
     <nav>
-      <% if user_signed_in? %>
-        <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-      <% end %>
+      <ul class="nav-list">
+        <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link", id: "nav-home-link" %></li>
+        <li class="nav-item"><%= link_to "My books", books_path, class: "nav-link" %></li>
+        <li class="nav-item">Charts</li>
+      </ul>
     </nav>
+    <div class="header-icons">
+      <%= link_to search_path, class: "icon-link" do %>
+        <%= image_tag "search_icon", alt: "Search", class: "icon" %>
+      <% end %>
+      <%= link_to books_path, id: "mobile-only-link", class: "icon-link" do %>
+        <%= image_tag "books_icon", alt: "Books", class: "icon" %>
+      <% end %>
+      <% if user_signed_in? %>
+        <%= link_to destroy_user_session_path, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "icon-link" do %>
+          <%= image_tag "profile_icon", alt: "Profile Icon", class: "icon" %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </header>
