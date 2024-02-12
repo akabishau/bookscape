@@ -6,16 +6,27 @@ class GoogleBooksParser
     json["items"].map do |item|
       google_id = item["id"]
       # TODO: temp fix for missing thumbnail, can be other fields - consider not include in the results invalid books
-      image_links = item["volumeInfo"]["imageLinks"] || {}
-      search_info = item["searchInfo"] || {}
+      # image_links = item["volumeInfo"]["imageLinks"] || {}
+      # search_info = item["searchInfo"] || {}
       book_data = {
-        google_id:,
-        title: item["volumeInfo"]["title"],
-        authors: item["volumeInfo"]["authors"] || ["Unknown"],
-        main_category: item["volumeInfo"]["categories"] || [],
-        description: item["volumeInfo"]["description"] || "No description available",
-        short_description: search_info["textSnippet"] || "No description available",
-        cover_url_thumbnail: image_links["thumbnail"] || "https://via.placeholder.com/128x196?text=No+cover"
+        google_id: item["id"],
+        self_link: item["selfLink"],
+        title: item.dig("volumeInfo", "title"),
+        subtitle: item.dig("volumeInfo", "subtitle"),
+        authors: item.dig("volumeInfo", "authors") || ["Unknown"],
+        main_category: item.dig("volumeInfo", "categories") || [],
+        categories: item.dig("volumeInfo", "categories"),
+        description: item.dig("volumeInfo", "description") || "No description available",
+        short_description: item.dig("searchInfo", "textSnippet") || "No description available",
+        cover_url_thumbnail: item.dig("volumeInfo", "imageLinks", "thumbnail") || "https://via.placeholder.com/128x196?text=No+cover",
+        print_type: item.dig("volumeInfo", "printType"),
+        edition_details: {
+          publisher: item.dig("volumeInfo", "publisher"),
+          published_date: item.dig("volumeInfo", "publishedDate"),
+          isbn13: item.dig("volumeInfo", "industryIdentifiers").find { |id| id["type"] == "ISBN_13" }["identifier"],
+          isbn10: item.dig("volumeInfo", "industryIdentifiers").find { |id| id["type"] == "ISBN_10" }["identifier"],
+          page_count: item.dig("volumeInfo", "pageCount")
+        }
       }
 
       user_book = user_books[google_id]

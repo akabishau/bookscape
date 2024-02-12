@@ -7,4 +7,5 @@
     <%= book[:main_category] %> -
     <%= book[:description] %>
   </p>
+  <%= render "edition_details", book: book[:edition_details] %>
 <% end %>
