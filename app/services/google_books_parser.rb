@@ -8,6 +8,7 @@ class GoogleBooksParser
       # TODO: temp fix for missing thumbnail, can be other fields - consider not include in the results invalid books
       # image_links = item["volumeInfo"]["imageLinks"] || {}
       # search_info = item["searchInfo"] || {}
+
       book_data = {
         google_id: item["id"],
         self_link: item["selfLink"],
@@ -23,8 +24,12 @@ class GoogleBooksParser
         edition_details: {
           publisher: item.dig("volumeInfo", "publisher"),
           published_date: item.dig("volumeInfo", "publishedDate"),
-          isbn13: item.dig("volumeInfo", "industryIdentifiers").find { |id| id["type"] == "ISBN_13" }["identifier"],
-          isbn10: item.dig("volumeInfo", "industryIdentifiers").find { |id| id["type"] == "ISBN_10" }["identifier"],
+          isbn13: item.dig("volumeInfo", "industryIdentifiers")&.find do |id|
+                    id["type"] == "ISBN_13"
+                  end&.[]("identifier"),
+          isbn10: item.dig("volumeInfo", "industryIdentifiers")&.find do |id|
+                    id["type"] == "ISBN_10"
+                  end&.[]("identifier"),
           page_count: item.dig("volumeInfo", "pageCount")
         }
       }

@@ -16,6 +16,10 @@ class BooksController < ApplicationController
     @books_with_status = UserBookService.all_user_books_with_status(current_user)
   end
 
+  def show
+    @book = Book.find(params[:id])
+  end
+
   private
 
   def book_params

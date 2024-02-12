@@ -8,5 +8,7 @@ class HomeController < ApplicationController
     @books_by_status.each do |status, user_books|
       @books_by_status[status] = user_books.map(&:book)
     end
+    Rails.logger.info("Books by status for HOME: #{@books_by_status}")
+    @books_by_status
   end
 end
