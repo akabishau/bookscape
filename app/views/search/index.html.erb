@@ -23,14 +23,7 @@
             <p><%= book[:short_description] %></p>
           </section>
           <div>
-            <%= form_with url: books_path, method: :post, local: true do |form| %>
-              <%= form.hidden_field :google_id, value: book[:google_id], name: "book[google_id]" %>
-              <%= form.collection_select :status,
-          UserBook.statuses.keys.map { |status| [status.titleize, status] },
-          :last, :first, {include_blank: "Add Book ...", selected: book[:status]},
-          { onchange: "this.form.submit();", name: "book[status]" }
-        %>
-            <% end %>
+            <%= render partial: "books/reading_status", locals: {google_id: book[:google_id]} %>
           </div>
         </div>
       </div>

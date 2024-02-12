@@ -1,4 +1,9 @@
 class UserBookService
+  def self.reading_status(user, google_id)
+    user_book = find_by_google_id(user, google_id)
+    user_book&.status
+  end
+
   def self.add_or_update_status(user, book_params, book_info)
     Rails.logger.info("Adding or updating status for user: #{user.id}, book: #{book_params[:google_id]}")
     user_book = find_by_google_id(user, book_params[:google_id])
