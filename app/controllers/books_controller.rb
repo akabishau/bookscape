@@ -14,7 +14,7 @@ class BooksController < ApplicationController
   end
 
   def index
-    books = UserBookService.all_user_books_with_status(current_user)
+    books = UserBookService.find_user_books_details(current_user)
 
     if params[:statuses].present?
       books = books.select do |book|

@@ -1,0 +1,42 @@
+.flash-message {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  color: #212529;
+  opacity: 1;
+  animation: fadeOut 3s ease forwards; //
+  position: relative;
+  width: auto;
+  text-align: center;
+  background-color: #f8f9fa;
+}
+
+.notice {
+  border-color: #ffc107;
+}
+
+.alert {
+  border-color: #17a2b8;
+}
+
+.error {
+  border-color: #dc3545;
+}
+
+.success {
+  border-color: #28a745;
+}
+
+// Fade-out animation
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.5;
+  } // Start fading out slowly
+  100% {
+    opacity: 0;
+  } // Fully faded at the end
+}
