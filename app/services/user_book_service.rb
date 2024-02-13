@@ -35,6 +35,7 @@ class UserBookService
       Rails.logger.debug "Book ID: #{user_book.book.id}, Cover URL: #{user_book.book.cover_url_thumbnail}"
       book = {
         id: user_book.book.id,
+        google_id: user_book.book.google_id,
         title: user_book.book.title,
         subtitle: user_book.book.subtitle,
         authors: user_book.book.authors,
