@@ -20,9 +20,7 @@
   </div>
   <div class="main-content">
     <div class="book-list">
-      <%= turbo_frame_tag 'book_list' do %>
-        <%= render partial: 'book', collection: @books_with_status, as: :book %>
-      <% end %>
+      <%= render partial: 'book', collection: @books_with_status, as: :book %>
     </div>
   </div>
 </div>

@@ -1,12 +1,7 @@
 <%# Expects locals: book %>
 <div class="book-card" data-google-id="<%= book[:google_id] %>">
-  <div class=image-status-container>
-    <div class="book-image">
-      <%= image_tag(book[:cover_url_thumbnail], alt: book[:title]) %>
-    </div>
-    <div class="book-status">
-      <%= render partial: "books/reading_status", locals: {google_id: book[:google_id]} %>
-    </div>
+  <div class="book-image">
+    <%= image_tag(book[:cover_url_thumbnail], alt: book[:title]) %>
   </div>
   <div class="book-info">
     <h2 class="book-title"><%= book[:title] %></h2>
@@ -17,7 +12,10 @@
     </section>
     <section class="book-description">
       <h4>About this Book:</h4>
-      <p><%= book[:short_description].html_safe %></p>
+      <p><%= book[:short_description] %></p>
     </section>
+    <div>
+      <%= render partial: "books/reading_status", locals: {google_id: book[:google_id]} %>
+    </div>
   </div>
 </div>
