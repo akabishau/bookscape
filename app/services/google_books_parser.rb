@@ -5,7 +5,7 @@ class GoogleBooksParser
     validate_json(json)
 
     json["items"].map do |item|
-      ObjectAttributeMappings.create_data(item, ObjectAttributeMappings::GOOGLE_BOOKS_KEYS)
+      ObjectAttributeMapping.create_data(item, ObjectAttributeMapping::GOOGLE_BOOKS_KEYS)
     end
   end
 
