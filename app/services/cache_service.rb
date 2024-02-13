@@ -21,7 +21,8 @@ class CacheService
 
     key = generate_key(user, scenario)
     value = Rails.cache.read(key)
-    Rails.logger.info("FOR KEY: #{key}, READING FROM CACHE: #{value}")
+    # Rails.logger.info("FOR KEY: #{key}, READING FROM CACHE: #{value}")
+    Rails.logger.info("FOR KEY: #{key}, READING FROM CACHE")
     value
   end
 

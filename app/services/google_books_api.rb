@@ -6,7 +6,12 @@ class GoogleBooksApi
 
   def initialize
     # "query" is HTTParty way of passing query parameters
-    @options = { query: { key: ENV["GOOGLE_BOOKS_API_KEY"] } }
+    @options = { query:
+      {
+        key: ENV["GOOGLE_BOOKS_API_KEY"],
+        langRestrict: "en", # restrict to English language
+        maxResults: 30
+      } }
   end
 
   def search_books(search_query)

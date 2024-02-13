@@ -1,0 +1,6 @@
+<%#temp book-list class to reuse styles created for books page %>
+<div class="book-list book-page-container">
+  <%= render partial: 'book', locals: {book: @book} %>
+  <%= render partial: 'edition_details', locals: {book: params[:edition_details]} %>
+  <% Rails.logger.info("BOOK DETAILS: #{@book}") %>
+</div>

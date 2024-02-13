@@ -1,4 +1,9 @@
 class UserBookService
+  def self.reading_status(user, google_id)
+    user_book = find_by_google_id(user, google_id)
+    user_book&.status
+  end
+
   def self.add_or_update_status(user, book_params, book_info)
     Rails.logger.info("Adding or updating status for user: #{user.id}, book: #{book_params[:google_id]}")
     user_book = find_by_google_id(user, book_params[:google_id])
@@ -23,16 +28,17 @@ class UserBookService
     # &. is safe navigation operator
   end
 
-  # TODO: books page currently shows all books with their status - review
-  def self.all_user_books_with_status(user)
+  def self.find_user_books_details(user)
     user.user_books.includes(:book).map do |user_book|
-      {
-        id: user_book.book.id,
-        title: user_book.book.title,
-        authors: user_book.book.authors,
-        status: user_book.status
-      }
+      book = BookService.find_book_details(user_book.book.id)
+      book[:status] = user_book.status
+      book
     end
+  end
+
+  def self.group_user_books_by_status(user)
+    books = find_user_books_details(user)
+    books.group_by { |book| book[:status] }
   end
 
   def self.find_by_google_id(user, google_id)
@@ -41,9 +47,5 @@ class UserBookService
     user.user_books.find_by(book:)
   end
 
-  def self.user_has_book?(user, book)
-    user.user_books.exists?(book:)
-  end
-
-  private_class_method :find_by_google_id, :user_has_book?
+  private_class_method :find_by_google_id
 end

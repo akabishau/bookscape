@@ -10,16 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_06_013846) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_13_190656) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
     t.string "title", null: false
     t.string "google_id", null: false
-    t.text "authors", null: false, array: true
+    t.text "authors", default: [], null: false, array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "main_category", default: [], array: true
+    t.text "description"
+    t.string "cover_url_thumbnail"
+    t.string "short_description"
+    t.string "subtitle"
+    t.string "publisher"
+    t.date "published_date"
+    t.string "isbn13"
+    t.string "isbn10"
+    t.integer "page_count"
+    t.string "print_type"
+    t.string "self_link"
+    t.text "categories", default: [], array: true
     t.index ["google_id"], name: "index_books_on_google_id", unique: true
   end
 

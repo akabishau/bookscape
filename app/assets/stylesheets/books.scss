@@ -1,0 +1,62 @@
+@import 'book/book_card';
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.sidebar {
+  padding: 20px;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  padding: 10px;
+  z-index: 10;
+}
+
+.sort-by,
+.filter-by {
+  margin-top: 5px;
+  h3 {
+    margin-bottom: 5px;
+    font-weight: medium;
+  }
+
+  input[type='checkbox'] {
+    margin: 5px; // space out the form elements
+  }
+
+  label {
+    display: inline-block;
+    margin-left: 5px;
+  }
+
+  select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    appearance: none;
+    font-size: 14px;
+  }
+}
+
+.book-list {
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+@media (min-width: 680px) {
+  .content {
+    grid-template-columns: 200px 1fr;
+    padding-top: 30px;
+  }
+
+  .sort-by,
+  .filter-by {
+    margin-top: 20px;
+  }
+}
