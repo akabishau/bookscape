@@ -17,8 +17,8 @@ class GoogleBooksParser
         authors: item.dig("volumeInfo", "authors") || ["Unknown"],
         main_category: item.dig("volumeInfo", "categories") || [],
         categories: item.dig("volumeInfo", "categories"),
-        description: item.dig("volumeInfo", "description") || "No description available",
-        short_description: item.dig("searchInfo", "textSnippet") || "No description available",
+        description: CGI.unescapeHTML(item.dig("volumeInfo", "description") || "No description available"),
+        short_description: CGI.unescapeHTML(item.dig("searchInfo", "textSnippet") || "No description available"),
         cover_url_thumbnail: item.dig("volumeInfo", "imageLinks", "thumbnail") || "https://via.placeholder.com/128x196?text=No+cover",
         print_type: item.dig("volumeInfo", "printType"),
         edition_details: {
