@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_12_043704) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_13_190656) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
     t.string "title", null: false
     t.string "google_id", null: false
-    t.text "authors", null: false, array: true
+    t.text "authors", default: [], null: false, array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "main_category", default: [], array: true
@@ -27,8 +27,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_12_043704) do
     t.string "subtitle"
     t.string "publisher"
     t.date "published_date"
-    t.string "isbn_13"
-    t.string "isbn_10"
+    t.string "isbn13"
+    t.string "isbn10"
     t.integer "page_count"
     t.string "print_type"
     t.string "self_link"
