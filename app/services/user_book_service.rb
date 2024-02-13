@@ -58,6 +58,11 @@ class UserBookService
     end
   end
 
+  def self.group_user_books_by_status(user)
+    books = all_user_books_with_status(user)
+    books.group_by { |book| book[:status] }
+  end
+
   def self.find_by_google_id(user, google_id)
     Rails.logger.info("Finding user book with GoogleID: #{google_id}")
     book = Book.find_by(google_id:)

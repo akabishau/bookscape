@@ -1,11 +1,19 @@
 <%= render 'quote' %>
-<% @books_by_status.each do |status, books| %>
-  <section>
-    <h2><%= status.capitalize %></h2>
-    <ul>
+<div class="home-books-container">
+  <% @books_by_status.each do |status, books| %>
+    <div class="section-info">
+      <h2><%= status.titleize %></h2>
+      <p><%= pluralize(books.count, 'book') %></p>
+      <%= link_to "View All >", books_path(sort: "title_asc", statuses: [status]) %>
+    </div>
+    <div class="books">
       <% books.each do |book| %>
-        <li><%= book.title %></li>
+        <div class="book">
+          <%= link_to book_path(book), class: "book-link" do %>
+            <%= image_tag book[:cover_url_thumbnail], alt: book[:title], class: "book-cover" %>
+          <% end %>
+        </div>
       <% end %>
-    </ul>
-  </section>
-<% end %>
+    </div>
+  <% end %>
+</div>
