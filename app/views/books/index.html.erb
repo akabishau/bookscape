@@ -1,10 +1,26 @@
-<% @books_with_status.each do |book| %>
-  <p><%= image_tag(book[:cover_url_thumbnail], alt: book[:title]) %></p>
-  <p>
-    <%= book[:title] %> -
-    <%= book[:status] %> -
-    <%= book[:authors] %> -
-    <%= book[:main_category] %> -
-    <%= book[:description] %>
-  </p>
-<% end %>
+<div class="content">
+  <div class="sidebar">
+    <%= form_with url: books_path, method: :get, local: true, class: "sticky" do |form| %>
+      <div class="sort-by">
+        <h3>Sort By</h3>
+        <%= form.select :sort,
+          [['Title (A-Z)', 'title_asc'], ['Title (Z-A)', 'title_desc']],
+          { selected: params[:sort] || 'title_asc', include_blank: false },
+          { onchange: "this.form.submit();" } %>
+      </div>
+      <div class="filter-by">
+        <h3>Filter by Status</h3>
+        <% UserBook.statuses.keys.each do |status| %>
+          <%= check_box_tag 'statuses[]', status, params[:statuses]&.include?(status), id: "status-#{status}", onchange: 'this.form.submit();' %>
+          <%= label_tag "status-#{status}", status.titleize %>
+          <br>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="main-content">
+    <div class="book-list">
+      <%= render partial: 'book', collection: @books_with_status, as: :book %>
+    </div>
+  </div>
+</div>

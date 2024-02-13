@@ -1,0 +1,10 @@
+<div class="about-edition-container">
+  <% book.each do |key, value| %>
+    <% unless value.blank? %>
+      <div class="edition-row">
+        <span class="edition-label"><%= key.to_s.humanize %>:</span>
+        <span class="edition-value"><%= value %></span>
+      </div>
+    <% end %>
+  <% end %>
+</div>

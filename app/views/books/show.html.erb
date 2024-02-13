@@ -1,0 +1,8 @@
+<h1><%= @book.title %></h1>
+<div>
+  <p><strong>Author:</strong> <%= @book.authors %></p>
+  <p><strong>Genre:</strong> <%= @book.main_category %></p>
+</div>
+<p><%= @book.description %></p>
+<p><%= @book.isbn_13 %></p>
+<%= render partial: 'books/reading_status', locals: { google_id: @book.google_id } %>
