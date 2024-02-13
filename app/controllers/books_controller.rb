@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  # TODO: think of better name, since it's not really book creation but adding book to user's reading collection
   def create
     search_books = CacheService.fetch(current_user, CacheScenarios::BOOK_SEARCH)
 
