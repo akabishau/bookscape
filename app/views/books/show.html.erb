@@ -1,8 +1,6 @@
-<h1><%= @book.title %></h1>
-<div>
-  <p><strong>Author:</strong> <%= @book.authors %></p>
-  <p><strong>Genre:</strong> <%= @book.main_category %></p>
+<%#temp book-list class to reuse styles created for books page %>
+<div class="book-list book-page-container">
+  <%= render partial: 'book', locals: {book: @book} %>
+  <%= render partial: 'edition_details', locals: {book: params[:edition_details]} %>
+  <% Rails.logger.info("BOOK DETAILS: #{@book}") %>
 </div>
-<p><%= @book.description %></p>
-<p><%= @book.isbn_13 %></p>
-<%= render partial: 'books/reading_status', locals: { google_id: @book.google_id } %>
