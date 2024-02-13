@@ -1,0 +1,12 @@
+<div class="book-item">
+  <p><%= image_tag(book[:cover_url_thumbnail], alt: book[:title]) %></p>
+  <p><%= link_to book[:title], book_path(book), target: "_blank" %></p>
+  <p>
+    <%= book[:title] %> -
+    <%= book[:status] %> -
+    <%= book[:authors] %> -
+    <%= book[:main_category] %> -
+    <%= book[:description] %>
+  </p>
+  <%= render "edition_details", book: book[:edition_details] %>
+</div>
