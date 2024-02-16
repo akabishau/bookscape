@@ -23,8 +23,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    # TODO: book helper method book hash
-    @book = Book.find(params[:id])
+    @book = BookService.find_book_details(params[:id])
   end
 
   private
