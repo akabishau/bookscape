@@ -1,16 +1,11 @@
 class BooksController < ApplicationController
   # TODO: think of better name, since it's not really book creation but adding book to user's reading collection
   def create
+    # TODO: review the logic of this method - it's twisted a bit because of the dev timing - search+cache functionality was added first
     search_books = CacheService.fetch(current_user, CacheScenarios::BOOK_SEARCH)
-
-    if search_books
-      book_info = search_books.find { |book| book[:google_id] == book_params[:google_id] }
-
-      handle_reading_status_change(book_params, book_info)
-    else
-      redirect_to :search
-      Rails.logger.error("Failed to find book in cache: #{book_params[:google_id]}")
-    end
+    book_info = search_books.find { |book| book[:google_id] == book_params[:google_id] } if search_books
+    Rails.logger.error("Failed to find book in cache: #{book_params[:google_id]}") if book_info.nil?
+    handle_reading_status_change(book_params, book_info)
   end
 
   def index
@@ -28,8 +23,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    # TODO: book helper method book hash
-    @book = Book.find(params[:id])
+    @book = BookService.find_book_details(params[:id])
   end
 
   private

@@ -2,7 +2,9 @@
 <div class="book-card" data-google-id="<%= book[:google_id] %>">
   <div class=image-status-container>
     <div class="book-image">
-      <%= image_tag(book[:cover_url_thumbnail], alt: book[:title]) %>
+      <%= link_to book_path(book), class: "book-link" do %>
+        <%= image_tag(book[:cover_url_thumbnail], alt: book[:title], class: "book-cover") %>
+      <% end %>
     </div>
     <div class="book-status">
       <%= render partial: "books/reading_status", locals: {google_id: book[:google_id]} %>
@@ -17,7 +19,7 @@
     </section>
     <section class="book-description">
       <h4>About this Book:</h4>
-      <p><%= book[:short_description].html_safe %></p>
+      <p><%= book[:description].html_safe %></p>
     </section>
   </div>
 </div>
