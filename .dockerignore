@@ -1,0 +1,42 @@
+# .dockerignore
+
+# Ignore bundler config
+/.bundle
+
+# Ignore the project’s dependency cache
+/vendor/bundle
+/node_modules
+
+# Ignore application test files
+/spec
+/test
+
+# Ignore development logs and temp files
+/log
+/tmp
+
+# Ignore Docker files
+**/Dockerfile*
+/docker-compose*.yml
+
+# Ignore IDE and editor files
+*.swp
+*~
+.project
+.idea
+.vscode
+.DS_Store
+
+# Ignore local environment variables
+.env
+
+# Ignore coverage files
+/coverage
+
+# Ignore Git files
+.git
+.gitignore
+
+# Ignore NPM debug files
+npm-debug.log
+yarn-error.log

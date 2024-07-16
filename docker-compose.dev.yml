@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:16.2
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: your_postgres_password
+      POSTGRES_USER: your_postgres_user
+      POSTGRES_DB: your_postgres_db
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: bundle exec rails server -b 0.0.0.0 -p 3000
+    volumes:
+      - .:/app
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://your_postgres_user:your_postgres_password@db:5432/your_postgres_db
+
+volumes:
+  postgres_data:
