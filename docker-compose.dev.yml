@@ -3,23 +3,30 @@ services:
     image: postgres:16.2
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: your_postgres_password
-      POSTGRES_USER: your_postgres_user
-      POSTGRES_DB: your_postgres_db
+    env_file:
+      - .env # POSTGRES_USER and POSTGRES_PASSWORD
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $${POSTGRES_USER}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - '5432:5432'
   web:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    command: bundle exec rails server -b 0.0.0.0 -p 3000
     volumes:
-      - .:/app
+      - .:/app:cached # improves performance on macOS by using cached file metadata
     ports:
       - '3000:3000'
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    env_file:
+      - .env
     environment:
-      DATABASE_URL: postgres://your_postgres_user:your_postgres_password@db:5432/your_postgres_db
-
+      RAILS_ENV: development
+    command: bundle exec rails server -b 0.0.0.0 -p 3000
 volumes:
   postgres_data:
