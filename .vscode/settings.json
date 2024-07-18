@@ -42,22 +42,24 @@
     "**/.next": true
   },
 
-  "solargraph.diagnostics": true,
-  "solargraph.formatting": true,
-  "solargraph.completion": true,
-  "solargraph.hover": true,
-  "solargraph.definitions": true,
-
   "[ruby]": {
-    "editor.defaultFormatter": "castwide.solargraph"
+    "editor.defaultFormatter": "Shopify.ruby-lsp",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.semanticHighlighting.enabled": true,
+    "editor.formatOnType": true
   },
+
+  "rubyLsp.formatter": "auto",
+  "rubyLsp.linters": ["rubocop"],
 
   "files.associations": {
     "*.html.erb": "erb"
   },
-
   "[erb]": {
     "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
     "editor.formatOnSave": true
   }
+
 }

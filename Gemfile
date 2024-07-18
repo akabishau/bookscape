@@ -76,5 +76,3 @@ gem "httparty"
 gem "rspec-rails", groups: [:development, :test]
 gem "rubocop", groups: [:development]
 gem "rubocop-rails", groups: [:development]
-gem "solargraph", groups: [:development]
-gem "solargraph-rails", groups: [:development]
