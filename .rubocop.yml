@@ -1,4 +1,11 @@
-require: rubocop-rails
+inherit_gem:
+  rubocop-shopify: rubocop.yml
+
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+
 AllCops:
   NewCops: disable
   Exclude:
@@ -16,17 +23,18 @@ Style/StringLiterals:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
-
-# to silence warning for now
+# # to silence warning for now
 Style/Documentation:
   Enabled: false
 
+#  %i[foo, bar, baz] vs [:foo, :bar, :baz] = don't check
 Style/SymbolArray:
   Enabled: false
 
-Style/ClassAndModuleChildren:
-  Enabled: false
-
+# %w[foo bar baz] - enforce for 5+ words arrays
 Style/WordArray:
   EnforcedStyle: brackets
   MinSize: 5
+
+Style/ClassAndModuleChildren:
+  Enabled: false

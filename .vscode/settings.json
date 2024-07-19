@@ -42,15 +42,17 @@
     "**/.next": true
   },
 
-  "solargraph.diagnostics": true,
-  "solargraph.formatting": true,
-  "solargraph.completion": true,
-  "solargraph.hover": true,
-  "solargraph.definitions": true,
-
   "[ruby]": {
-    "editor.defaultFormatter": "castwide.solargraph"
+    "editor.defaultFormatter": "Shopify.ruby-lsp",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.semanticHighlighting.enabled": true,
+    "editor.formatOnType": true
   },
+
+  "rubyLsp.formatter": "auto",
+  "rubyLsp.linters": ["rubocop"],
 
   "files.associations": {
     "*.html.erb": "erb"
@@ -59,5 +61,20 @@
   "[erb]": {
     "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
     "editor.formatOnSave": true
-  }
+  },
+
+  "cSpell.enabled": true,
+  "cSpell.language": "en",
+  "cSpell.minWordLength": 4,
+  "cSpell.ignorePaths": [
+    "node_modules",
+    "**/node_modules",
+    "**/node_modules/**", // the same for this one
+    "node_modules/**", // Doesn't currently work due to how the current working directory is determined.
+    ".vscode",
+    ".git",
+    "*.dll",
+    "**/*.dll",
+    "*.yml"
+  ]
 }
