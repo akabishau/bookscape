@@ -61,20 +61,5 @@
   "[erb]": {
     "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
     "editor.formatOnSave": true
-  },
-
-  "cSpell.enabled": true,
-  "cSpell.language": "en",
-  "cSpell.minWordLength": 4,
-  "cSpell.ignorePaths": [
-    "node_modules",
-    "**/node_modules",
-    "**/node_modules/**", // the same for this one
-    "node_modules/**", // Doesn't currently work due to how the current working directory is determined.
-    ".vscode",
-    ".git",
-    "*.dll",
-    "**/*.dll",
-    "*.yml"
-  ]
+  }
 }
