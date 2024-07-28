@@ -37,8 +37,6 @@ This application uses Google Books API. To run the application locally, you'll n
 
 
 
-
-## work in progress ##
 ## Features
 
 - **Book Browsing**: Users can browse through a list of books in the catalogue.
