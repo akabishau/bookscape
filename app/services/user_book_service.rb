@@ -17,7 +17,7 @@ class UserBookService
       if user_book.persisted?
         Rails.logger.info("Added new book with status: #{book_params[:status]}")
       else
-        Rails.logger.error("Failed to create UserBook: #{user_book.errors.full_messages.join(', ')}")
+        Rails.logger.error("Failed to create UserBook: #{user_book.errors.full_messages.join(", ")}")
       end
     end
   end
@@ -32,6 +32,8 @@ class UserBookService
     user.user_books.includes(:book).map do |user_book|
       book = BookService.find_book_details(user_book.book.id)
       book[:status] = user_book.status
+      review = user_book.review
+      book[:review] = review if review
       book
     end
   end

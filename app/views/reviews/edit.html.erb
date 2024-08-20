@@ -1,0 +1,14 @@
+<h2>Edit Review for <%= @book.title %></h2>
+<%= form_with(model: [@book, @review], url: book_review_path(@book), local: true) do |form| %>
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.number_field :rating, value: @review.rating, in: 0.0..5.0, step: 0.5 %>
+  </div>
+  <div class="field">
+    <%= form.label :comment %>
+    <%= form.text_area :comment, value: @review.comment %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Update Review", class: "btn btn-primary" %>
+  </div>
+<% end %>

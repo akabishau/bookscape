@@ -8,11 +8,20 @@
     </div>
     <div class="book-status">
       <%= render partial: "books/reading_status", locals: {google_id: book[:google_id]} %>
+      <%= render partial: "books/review_button", locals: { book: book, review: book[:review] } %>
     </div>
   </div>
   <div class="book-info">
     <h2 class="book-title"><%= book[:title] %></h2>
     <h3 class="book-author"><%= book[:authors].join(", ") %></h3>
+    <!-- New section for displaying review information -->
+    <% if book[:review].present? %>
+      <div class="book-review">
+        <h4>Your Review:</h4>
+        <p><strong>Rating:</strong> <%= book[:review].rating %></p>
+        <p><strong>Comment:</strong> <%= book[:review].comment %></p>
+      </div>
+    <% end %>
     <section class="book-genre">
       <h4>Genre: </h4>
       <p><%= book[:main_category].join(", ") %></p>

@@ -1,0 +1,5 @@
+<% if review.present? %>
+  <%= link_to 'Edit Review', edit_book_review_path(book[:id], review), class: 'btn btn-primary' %>
+<% else %>
+  <%= link_to 'Add Review', new_book_review_path(book[:id]), class: 'btn btn-secondary' %>
+<% end %>
