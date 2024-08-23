@@ -2,13 +2,13 @@
 <%# reading_status_options defined in book_helper %>
 <%# current_reading_status defined in book_helper %>
 <%= form_with url: books_path, method: :post, local: true, html: { class: "form-group" } do |form| %>
-  <%= form.hidden_field :google_id, value: google_id, name: "book[google_id]" %>
+  <%= form.hidden_field :google_id, value: book.google_id, name: "book[google_id]" %>
   <%= form.collection_select :status,
           reading_status_options,
           :last, :first,
           {
             include_blank: "Add Book ...",
-            selected: current_reading_status(google_id)
+            selected: current_reading_status(book)
           },
           {
             onchange: "this.form.submit();",

@@ -6,6 +6,6 @@
 </div>
 <%# results container to display books with current reading status if found in libray %>
 <div class="search-results">
-  <%= render partial: "book", collection: @books_data, as: :book if @books_data.present? %>
-  <%= "No books found. Please try a different search term." unless @books_data.present? %>
+  <%= render partial: "book", collection: @books, as: :book if @books.present? %>
+  <%= "No books found. Please try a different search term." unless @books.present? %>
 </div>

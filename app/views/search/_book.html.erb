@@ -1,22 +1,23 @@
 <%# Expects locals: book %>
 <%# TODO: Consider Presenter for hangding nils and invalid values %>
-<div class="book-card" data-google-id="<%= book[:google_id] %>">
+<% Rails.logger.info("book: #{book.title}") %>
+<div class="book-card" data-google-id="<%= book.google_id %>">
   <div class="book-image">
-    <%= image_tag(book[:cover_url_thumbnail] || 'no_cover', alt: book[:title]) %>
+    <%= image_tag(book.cover_url_thumbnail|| 'no_cover', alt: book.title) %>
   </div>
   <div class="book-info">
-    <h2 class="book-title"><%= book[:title] %></h2>
-    <h3 class="book-author"><%= Array(book[:authors]).join(", ") %></h3>
+    <h2 class="book-title"><%= book.title %></h2>
+    <h3 class="book-author"><%= Array(book.authors).join(", ") %></h3>
     <section class="book-genre">
       <h4>Genre: </h4>
-      <p><%= Array(book[:main_category]).join(", ") %></p>
+      <p><%= Array(book.main_category).join(", ") %></p>
     </section>
     <section class="book-description">
       <h4>About this Book:</h4>
-      <p><%= book[:short_description] || book[:description] %></p>
+      <p><%= book.short_description || book.description %></p>
     </section>
     <div>
-      <%= render partial: "books/reading_status", locals: {google_id: book[:google_id]} %>
+      <%= render partial: "books/reading_status", locals: {book: book} %>
     </div>
   </div>
 </div>
