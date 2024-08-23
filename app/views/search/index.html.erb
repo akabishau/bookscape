@@ -4,10 +4,8 @@
     <%= form.submit "Search", class: "search-button"%>
   <% end %>
 </div>
+<%# results container to display books with current reading status if found in libray %>
 <div class="search-results">
-  <% if @books_data %>
-    <% @books_data.each do |book| %>
-      <%= render partial: "search_book", locals: {book: book, layout: "search"} %>
-    <% end %>
-  <% end %>
+  <%= render partial: "book", collection: @books_data, as: :book if @books_data.present? %>
+  <%= "No books found. Please try a different search term." unless @books_data.present? %>
 </div>
