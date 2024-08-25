@@ -1,0 +1,12 @@
+<% @user_books.each do |user_book| %>
+  <div class="book-entry">
+    <h3><%= user_book.book.title %></h3>
+    <p>Status: <%= user_book.status.titleize %></p>
+    <% if user_book.review.present? %>
+      <p>Review: <%= user_book.review.comment %></p>
+      <p>Rating: <%= user_book.review.rating %></p>
+    <% else %>
+      <p>No review yet.</p>
+    <% end %>
+  </div>
+<% end %>

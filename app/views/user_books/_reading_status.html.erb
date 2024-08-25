@@ -1,0 +1,18 @@
+<%# Expects locals: book %>
+<%= form_with url: user_books_update_status_path, method: :post, local: true, html: { class: "form-group" } do |form| %>
+  <%= form.hidden_field :book_id, value: user_book.id, name: "user_book[book_id]" %>
+  <%= form.collection_select :status,
+          reading_status_options,
+          :last, :first,
+          {
+            include_blank: "Add Book ...",
+            # selected: book.reading_status_for(current_user)
+            selected: user_book.status
+          },
+          {
+            onchange: "this.form.submit();",
+            name: "user_book[status]",
+            class: "form-control custom-select"
+          }
+        %>
+<% end %>

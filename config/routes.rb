@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   end
 
   get "search", to: "search#index"
+
+  # library endpoint
+  get "user_books", to: "user_books#index"
 end
