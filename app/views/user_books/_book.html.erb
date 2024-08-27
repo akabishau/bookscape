@@ -10,7 +10,7 @@
       <% end %>
     </div>
     <div class="book-status">
-      <%= render partial: "reading_status", locals: {user_book: user_book } %>
+      <%= render partial: "update_status", locals: {user_book: user_book } %>
     </div>
     <% if user_book.status == "read" %>
       <div>

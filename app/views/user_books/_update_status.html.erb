@@ -1,0 +1,14 @@
+<%= form_with(
+  model: user_book,
+  url: user_book_path(user_book),
+  method: :patch,
+  local: true,
+  html: { class: "form-group" }) do |form| %>
+  <!-- Dropdown for selecting the status -->
+  <%= form.collection_select :status,
+      UserBook.statuses.keys.map { |status| [status.titleize, status] },
+      :last, :first,
+      { selected: user_book.status, include_blank: false },
+      class: "form-control custom-select",
+      onchange: "this.form.submit();" %>
+<% end %>

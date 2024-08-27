@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   # library endpoint
   # get "user_books", to: "user_books#index"
 
-  resources :user_books, only: [:index] do
+  resources :user_books, only: [:index, :update] do
     # use single resource - user_book has only one review
     resource :review, only: [:new, :create, :edit, :update]
     # user_books/:id/review/new or edit
@@ -32,6 +32,7 @@ Rails.application.routes.draw do
 
   # UserBooks routes
   # get "/user_books", to: "user_books#index", as: "user_books"
+  # patch "/user_books/:id", to: "user_books#update", as: "user_books"
   # # Review routes under UserBook
   # get "/user_books/:user_book_id/review/new", to: "reviews#new", as: "new_user_book_review"
   # post "/user_books/:user_book_id/review", to: "reviews#create", as: "user_book_reviews"
