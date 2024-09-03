@@ -1,6 +1,7 @@
 class UserBooksController < ApplicationController
   def index
     # TODO: review possible alt approach of using user.books
+    # TODO: sort/filter books - check SnippetsLab for previous implementation
     @user_books = current_user.user_books.includes(:book, :review)
   end
 
@@ -12,6 +13,10 @@ class UserBooksController < ApplicationController
     else
       redirect_back(fallback_location: search_path, alert: "Failed to add the book to your library.")
     end
+  end
+
+  def show
+    @user_book = current_user.user_books.find(params[:id])
   end
 
   def update

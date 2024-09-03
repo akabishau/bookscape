@@ -1,6 +1,6 @@
 <div class="content">
   <div class="sidebar">
-    <%= form_with url: books_path, method: :get, local: true, class: "sticky" do |form| %>
+    <%= form_with url: user_books_path, method: :get, local: true, class: "sticky" do |form| %>
       <div class="sort-by">
         <h3>Sort By</h3>
         <%= form.select :sort,

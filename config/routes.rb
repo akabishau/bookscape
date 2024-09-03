@@ -9,21 +9,12 @@ Rails.application.routes.draw do
   # Custom route for updating the reading status of a UserBook
   post "user_books/update_status", to: "user_books#update_status", as: :user_books_update_status
 
-  resources :books, only: [:create, :index, :show] do
-    resource :review, only: [:new, :create, :edit, :update]
-    # Routes Generated:
-    # •	new_book_review_path(book) → /books/:book_id/review/new
-    # •	create_book_review_path(book) → /books/:book_id/review
-    # •	edit_book_review_path(book) → /books/:book_id/review/edit
-    # •	update_book_review_path(book) → /books/:book_id/review
-  end
-
   get "search", to: "search#index"
 
   # library endpoint
   # get "user_books", to: "user_books#index"
 
-  resources :user_books, only: [:index, :create, :update] do
+  resources :user_books, only: [:index, :create, :show, :update] do
     # use single resource - user_book has only one review
     resource :review, only: [:new, :create, :edit, :update]
     # user_books/:id/review/new or edit
