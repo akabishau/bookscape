@@ -16,8 +16,14 @@
       <h4>About this Book:</h4>
       <p><%= book.short_description || book.description %></p>
     </section>
-    <div>
-      <%= render partial: "books/reading_status", locals: {book: book} %>
+    <div class="book-status">
+      <% if book.persisted? && user_book = UserBook.find_by(user: current_user, book: book) %>
+        <!-- Existing book in the library: allow status update -->
+        <%= render partial: "user_books/update_status", locals: { user_book: user_book } %>
+      <% else %>
+        <!-- New book, allow adding to the library -->
+        <%= render partial: "user_books/add_status", locals: { book: book } %>
+      <% end %>
     </div>
   </div>
 </div>

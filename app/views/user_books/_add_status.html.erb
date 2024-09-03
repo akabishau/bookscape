@@ -1,0 +1,22 @@
+<%= form_with url: user_books_path,
+              method: :post,
+              local: true,
+              html: { class: "form-group" } do |form|%>
+  <%= form.hidden_field :google_id,
+      value: book.google_id,
+      name: "user_book[google_id]" %>
+  <!-- Dropdown for selecting the status -->
+  <%= form.collection_select :status,
+          UserBook.statuses.keys.map { |status| [status.titleize, status] },
+          :last, :first,
+          {
+            include_blank: "Add Book ...",
+            selected: nil  # no status selected by default
+          },
+          {
+            onchange: "this.form.submit();",
+            name: "user_book[status]",
+            class: "form-control custom-select"
+          }
+        %>
+<% end %>

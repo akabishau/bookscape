@@ -4,21 +4,26 @@ class UserBooksController < ApplicationController
     @user_books = current_user.user_books.includes(:book, :review)
   end
 
-  def update
-    @user_book = UserBook.find(params[:id])
-    if @user_book.update(user_book_params)
-      flash[:notice] = "Reading status updated successfully."
-    else
-      flash[:alert] = "Failed to update reading status."
-    end
+  def create
+    service = BookStatusService.new(current_user, user_book_params[:google_id], user_book_params[:status])
 
-    # TODO: refactor using turbo stream
-    redirect_to(user_books_path) # redirect helps to prevent form resubmission
+    if service.call
+      redirect_to(user_books_path, notice: "Book added to your library with the selected status.")
+    else
+      redirect_back(fallback_location: search_path, alert: "Failed to add the book to your library.")
+    end
+  end
+
+  def update
+    service = BookStatusService.new(current_user, params[:user_book][:google_id], params[:user_book][:status])
+    service.call
+    # TODO: should stay on the same page after updating the status
+    redirect_to(user_books_path, notice: "Reading status updated successfully.")
   end
 
   private
 
   def user_book_params
-    params.require(:user_book).permit(:status)
+    params.require(:user_book).permit(:google_id, :status)
   end
 end

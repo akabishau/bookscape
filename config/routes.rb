@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   # library endpoint
   # get "user_books", to: "user_books#index"
 
-  resources :user_books, only: [:index, :update] do
+  resources :user_books, only: [:index, :create, :update] do
     # use single resource - user_book has only one review
     resource :review, only: [:new, :create, :edit, :update]
     # user_books/:id/review/new or edit
