@@ -1,0 +1,5 @@
+<%#temp book-list class to reuse styles created for books page %>
+<div class="book-list book-page-container">
+  <%= render partial: "book", locals: {user_book: @user_book} %>
+  <%= render partial: "edition_details", locals: {book: @user_book.book } %>
+</div>

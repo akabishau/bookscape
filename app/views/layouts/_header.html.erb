@@ -8,15 +8,14 @@
     <nav>
       <ul class="nav-list">
         <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link", id: "nav-home-link" %></li>
-        <li class="nav-item"><%= link_to "My books", books_path, class: "nav-link" %></li>
-        <li class="nav-item">Charts (Soon...)</li>
+        <li class="nav-item"><%= link_to "Library", user_books_path, class: "nav-link" %></li>
       </ul>
     </nav>
     <div class="header-icons">
       <%= link_to search_path, class: "icon-link" do %>
         <%= image_tag "search_icon", alt: "Search", class: "icon" %>
       <% end %>
-      <%= link_to books_path, id: "mobile-only-link", class: "icon-link" do %>
+      <%= link_to user_books_path, id: "mobile-only-link", class: "icon-link" do %>
         <%= image_tag "books_icon", alt: "Books", class: "icon" %>
       <% end %>
       <% if user_signed_in? %>
