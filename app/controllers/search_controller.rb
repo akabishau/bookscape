@@ -11,9 +11,7 @@ class SearchController < ApplicationController
     # TODO: possibly add pagination, like more button
 
     @books_data = search_books(params[:query])
-    # @books_data.each do |book|
-    #   book[:status] = UserBookService.reading_status(current_user, book[:google_id])
-    # end
+
     @books = @books_data.map do |book_data|
       # Check if the book already exists in the database
       Book.find_or_initialize_by(google_id: book_data[:google_id]) do |book|
