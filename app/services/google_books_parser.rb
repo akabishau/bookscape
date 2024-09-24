@@ -1,6 +1,4 @@
 class GoogleBooksParser
-  require "object_attribute_mapping"
-
   def self.parse(json, _user)
     validate_json(json)
 

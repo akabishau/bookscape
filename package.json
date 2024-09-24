@@ -1,0 +1,20 @@
+{
+  "name": "bookscape",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/akabishau/Bookscape.git",
+  "author": "akabishau <aleksey.kabishau@icloud.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
+    "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "sass": "^1.79.3"
+  },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.10"
+  }
+}
