@@ -1,40 +1,8 @@
-inherit_gem:
-  rubocop-shopify: rubocop.yml
+# Omakase Ruby styling for Rails
+inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 
-require:
-  - rubocop-rails
-  - rubocop-performance
-  - rubocop-rspec
-
-AllCops:
-  NewCops: disable
-  Exclude:
-    - '**/db/**/*'
-    - '**/node_modules/**/*'
-    - '**/vendor/**/*'
-    - 'bin/**/*'
-    - 'spec/**/*'
-    - 'config/initializers/*'
-    - 'lib/tasks/**/*'
-    - '**/*.erb'
-
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
-
-Style/FrozenStringLiteralComment:
-  Enabled: false
-# # to silence warning for now
-Style/Documentation:
-  Enabled: false
-
-#  %i[foo, bar, baz] vs [:foo, :bar, :baz] = don't check
-Style/SymbolArray:
-  Enabled: false
-
-# %w[foo bar baz] - enforce for 5+ words arrays
-Style/WordArray:
-  EnforcedStyle: brackets
-  MinSize: 5
-
-Style/ClassAndModuleChildren:
-  Enabled: false
+# Overwrite or add rules to create your own house style
+#
+# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
+# Layout/SpaceInsideArrayLiteralBrackets:
+#   Enabled: false

@@ -1,17 +1,9 @@
-user = User.find_or_create_by!(email: "test1@email.com") do |user|
-  user.password = "test1@email.com"
-  user.password_confirmation = "test1@email.com"
-end
-
-statuses = ["want_to_read", "reading", "read"]
-
-15.times do |i|
-  book = Book.find_or_create_by!(google_id: "google#{i + 1}") do |book|
-    book.title = "Book #{i + 1}"
-    book.authors = ["Author #{i + 1}"]
-  end
-
-  UserBook.find_or_create_by!(user:, book:) do |user_book|
-    user_book.status = statuses.sample
-  end
-end
+# This file should ensure the existence of records required to run the application in every environment (production,
+# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
+# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
+#
+# Example:
+#
+#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
+#     MovieGenre.find_or_create_by!(name: genre_name)
+#   end

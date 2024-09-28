@@ -1,11 +1,1 @@
-// manifest file to import all our styles
-// Mixins
-@import 'mixins/media';
-
-// Configuration
-@import 'config/variables';
-@import 'config/reset';
-
-// Layouts
-@import 'layouts/container';
-@import 'layouts/header';
+// Entry point for your Sass build
