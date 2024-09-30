@@ -1,0 +1,54 @@
+.footer {
+  background-color: #f9f9f9;
+  text-align: center;
+
+  @include respond-to('tabletAndUp') {
+    // padding: 1rem 3rem;
+  }
+
+  &__content {
+    padding: 1rem 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem; // review
+
+    @include respond-to('tabletAndUp') {
+      padding: 1rem 0;
+      grid-template-columns: 1fr auto;
+      justify-content: space-between;
+      text-align: left; // Align content left on larger screens
+    }
+  }
+
+  &__copyright {
+    grid-row: 2;
+
+    @include respond-to('tabletAndUp') {
+      grid-row: auto;
+    }
+  }
+
+  &__nav {
+    grid-row: 1;
+
+    @include respond-to('tabletAndUp') {
+      grid-row: auto;
+    }
+  }
+
+  &__links {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    list-style: none;
+  }
+
+  // TODO: Possibly set global link style and use mixing here or custom class
+  &__links a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
