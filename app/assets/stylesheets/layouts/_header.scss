@@ -1,0 +1,49 @@
+.header {
+  // TODO: move color to a global variable
+  background-color: #f9f9f9;
+
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 1rem 0;
+
+  @include respond-to('tabletAndUp') {
+    grid-template-columns: repeat(12, 1fr); // 12 equal columns
+    padding: 1.5rem 0;
+  }
+
+  &__logo {
+    @include respond-to('tabletAndUp') {
+      grid-column: 5 / span 4;
+      justify-self: center;
+    }
+  }
+
+  &__actions {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    align-items: center;
+
+    @include respond-to('tabletAndUp') {
+      grid-column: 9 / span 4;
+      justify-self: end;
+      gap: 1rem;
+    }
+  }
+
+  &__search {
+    display: none; // Hide search on mobile
+
+    @include respond-to('tabletAndUp') {
+      display: block;
+    }
+  }
+
+  &__menu {
+  }
+
+  &__icon {
+    height: 48px;
+    vertical-align: middle;
+  }
+}

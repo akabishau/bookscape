@@ -1,15 +1,15 @@
 <header class="header">
   <div class="header__logo">
-    <%= link_to root_path, class: "icon-link" do %>
-      <%= image_tag "logo.svg", alt: "Bookscape Logo", class: "logo-img" %>
+    <%= link_to root_path do %>
+      <%= image_tag "logo", alt: "Bookscape Logo" %>
     <% end %>
   </div>
   <nav class="header__actions">
-    <%= link_to search_path, class: "icon-link" do %>
-      <%= image_tag "search_icon.svg", alt: "Search", class: "icon" %>
+    <%= link_to search_path, class: "header__search" do %>
+      <%= image_tag "search_icon", alt: "Search", class: "header__icon" %>
     <% end %>
-    <%= link_to user_books_path, id: "mobile-only-link", class: "icon-link" do %>
-      <%= image_tag "menu_icon", alt: "Menu", class: "icon" %>
+    <%= link_to user_books_path, class: "header__menu" do %>
+      <%= image_tag "menu_icon", alt: "Menu", class: "header__icon" %>
     <% end %>
   </nav>
 </header>
