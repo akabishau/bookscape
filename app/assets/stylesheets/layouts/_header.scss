@@ -7,9 +7,16 @@
   align-items: center;
   padding: 1rem 0;
 
+  transition: background-color 0.3s ease-in-out;
+
   @include respond-to('tabletAndUp') {
     grid-template-columns: repeat(12, 1fr); // 12 equal columns
     padding: 1.5rem 0;
+  }
+
+  /* Modifier to change background color when menu is open */
+  &--menu-open {
+    background-color: black;
   }
 
   &__logo {
@@ -39,8 +46,8 @@
     }
   }
 
-  &__menu {
-  }
+  // &__menu {
+  // }
 
   &__icon {
     height: 48px;
