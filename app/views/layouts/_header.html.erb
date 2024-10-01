@@ -12,15 +12,18 @@
       <%= link_to search_path, class: "header__search" do %>
         <%= image_tag "search_icon", alt: "Search", class: "header__icon" %>
       <% end %>
-      <%# link_to user_books_path, class: "header__menu" do %>
-        <%# image_tag "menu_icon", alt: "Menu", class: "header__icon" %>
-        <%# end %>
-        <button data-action="menu#toggle">
-          <%= image_tag "menu_icon",
-          alt: "Menu",
-          class: "header__icon",
-          data: { menu_target: "icon"} %>
-        </button>
-      </nav>
-    </div>
-  </header>
+      <button data-action="menu#toggle">
+        <%= image_tag "menu_icon",alt: "Menu", class: "header__icon", data: { menu_target: "icon"} %>
+      </button>
+    </nav>
+  </div>
+  <!-- Dropdown Menu for Mobile -->
+  <nav class="header__dropdown" data-menu-target="dropdown">
+    <ul>
+      <li>Home</li>
+      <li>My Books</li>
+      <li>Charts</li>
+      <li>Profile</li>
+    </ul>
+  </nav>
+</header>
