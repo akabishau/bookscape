@@ -23,7 +23,13 @@
       <li>Home</li>
       <li>My Books</li>
       <li>Charts</li>
-      <li>Profile</li>
+      <li data-action="click->menu#toggleProfileDropdown">Profile</li>
+      <!-- Second dropdown (for Profile) -->
+      <ul class="header__profile-dropdown" data-menu-target="profileDropdown">
+        <li><a href="#">View profile</a></li>
+        <li><a href="#">Change password</a></li>
+        <li><a href="#">Sign out</a></li>
+      </ul>
     </ul>
   </nav>
 </header>
