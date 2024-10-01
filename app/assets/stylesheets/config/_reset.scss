@@ -16,6 +16,13 @@ html {
   overflow-y: scroll; // TODO: Review do I need this?
 }
 
+body {
+  display: grid;
+  // Header, main content, footer
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
 // img,
 // picture,
 // svg {

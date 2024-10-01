@@ -1,9 +1,9 @@
 // _container.scss
-.grid-container {
+.content-container {
   background-color: bisque;
   display: grid;
-  grid-template-rows: auto 1fr auto; // Header, main content, footer layout
-  min-height: 100vh;
+  // grid-template-rows: auto 1fr auto; // Header, main content, footer layout
+  // min-height: 100vh;
   width: 100%; // Full width on mobile
   margin: 0 auto;
   padding: 0 1rem;

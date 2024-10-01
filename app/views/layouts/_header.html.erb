@@ -1,24 +1,26 @@
 <header class="header" data-controller="menu">
-  <div class="header__logo">
-    <%= link_to root_path do %>
-      <%= image_tag "logo",
+  <div class="header__content">
+    <div class="header__logo">
+      <%= link_to root_path do %>
+        <%= image_tag "logo",
         alt: "Bookscape Logo",
         data: { menu_target: "logo" },
         class: "header_logo" %>
-    <% end %>
-  </div>
-  <nav class="header__actions">
-    <%= link_to search_path, class: "header__search" do %>
-      <%= image_tag "search_icon", alt: "Search", class: "header__icon" %>
-    <% end %>
-    <%# link_to user_books_path, class: "header__menu" do %>
-      <%# image_tag "menu_icon", alt: "Menu", class: "header__icon" %>
-      <%# end %>
-      <button data-action="menu#toggle">
-        <%= image_tag "menu_icon",
+      <% end %>
+    </div>
+    <nav class="header__actions">
+      <%= link_to search_path, class: "header__search" do %>
+        <%= image_tag "search_icon", alt: "Search", class: "header__icon" %>
+      <% end %>
+      <%# link_to user_books_path, class: "header__menu" do %>
+        <%# image_tag "menu_icon", alt: "Menu", class: "header__icon" %>
+        <%# end %>
+        <button data-action="menu#toggle">
+          <%= image_tag "menu_icon",
           alt: "Menu",
           class: "header__icon",
           data: { menu_target: "icon"} %>
-      </button>
-    </nav>
+        </button>
+      </nav>
+    </div>
   </header>
