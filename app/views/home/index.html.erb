@@ -1,4 +1,22 @@
-<p><%= @quote %></p>
-<p><%= @author %></p>
-<h1>Books Grouped by Reading Status</h1>
-<h1>Books Grouped by Want to Read Status</h1>
+<div class="home-wrapper">
+  <section class="home-section">
+    <div class="reading-goal">
+      <h2>Reading goal block will go there...</h2>
+    </div>
+  </section>
+  <section class="home-section">
+    <div class="status-shelves">
+      <% @books_by_status.each do |status, user_books| %>
+        <div class="status-shelf">
+          <%= group_label_for(status) %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+  <section class="home-section">
+    <!-- Custom shelves -->
+    <div class="custom-shelves">
+      <h2>Custom shelves section will go there...</h2>
+    </div>
+  </section>
+</div>
