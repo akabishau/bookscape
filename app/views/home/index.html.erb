@@ -8,7 +8,19 @@
     <div class="status-shelves">
       <% @books_by_status.each do |status, user_books| %>
         <div class="status-shelf">
-          <%= group_label_for(status) %>
+          <div class="status-shelf__header">
+            <h2 class="status-shelf__title"><%= group_label_for(status) %></h2>
+            <div class="status-shelf__meta">
+              <span class="status-shelf__count"><%= pluralize(user_books.count, 'book') %></span>
+              <span>|</span>
+              <%= link_to "View All", user_books_path(status: status), class: "status-shelf__view-all" %>
+            </div>
+          </div>
+          <div class="status-shelf__books">
+            <% user_books.each do |user_book| %>
+              <%= image_tag "no_cover" %>
+            <% end %>
+          </div>
         </div>
       <% end %>
     </div>

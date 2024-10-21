@@ -22,8 +22,39 @@
 }
 
 .status-shelf {
-  background-color: #f0f0f0; // Optional: Add some styling to the shelves
-  padding: 10px; // Optional: Add some padding
+  background-color: #f0f0f0;
+
+  &__header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+
+  &__title {
+    font-weight: bold;
+  }
+
+  &__meta {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__count {
+    font-weight: bold;
+  }
+
+  &__view-all {
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  &__books {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .custom-shelves {
