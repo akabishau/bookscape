@@ -4,26 +4,28 @@
   </section>
   <section class="status-shelves">
     <% @books_by_status.each do |status, books| %>
-      <div class="heading">
-        <div class="heading__title">
-          <%= group_label_for(status) %>
-        </div>
-        <div class="heading__meta">
-          <span class="heading__count">
-            <%= pluralize(books.count, "book") %>
-          </span>
-          <span>|</span>
-          <span>
-            <%= link_to "View all", user_books_path, class: "heading__view-all" %>
-          </span>
-        </div>
-      </div>
       <div class="status-shelf">
-        <% books.each do |book| %>
-          <div class="status-shelf__book">
-            <%= image_tag "no_cover", class: "status-shelf__book-cover" %>
+        <div class="status-shelf-heading">
+          <div class="status-shelf-heading__title">
+            <%= group_label_for(status) %>
           </div>
-        <% end %>
+          <div class="status-shelf-heading__info">
+            <span class="status-shelf-heading__count">
+              <%= pluralize(books.count, "book") %>
+            </span>
+            <span>|</span>
+            <span>
+              <%= link_to "View all", user_books_path, class: "status-shelf-heading__view-all" %>
+            </span>
+          </div>
+        </div>
+        <div class="status-shelf_books">
+          <% books.each do |book| %>
+            <div class="status-shelf__book">
+              <%= image_tag "no_cover", class: "status-shelf__book-cover" %>
+            </div>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </section>
