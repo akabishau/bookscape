@@ -1,0 +1,82 @@
+.user-books-page {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  // Breadcrumb, Header, Controls Main content area
+  gap: 1rem;
+
+  // Breadcrumb styling
+  &__breadcrumb {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    color: #333;
+
+    background-color: #c16c6c;
+  }
+
+  // Header section styling
+  &__header {
+    background-color: rgb(170, 218, 125);
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  // Controls section styling
+  &__controls {
+    display: grid;
+    // grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+
+    background-color: #c16c6c;
+
+    @include respond-to('tabletAndUp') {
+      grid-template-columns: repeat(5, auto);
+      align-items: center;
+    }
+
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  // Main content area with sidebar and book list
+  &__content {
+    display: grid;
+
+    background-color: rgb(170, 218, 125);
+
+    @include respond-to('tabletAndUp') {
+      grid-template-columns: 1fr 3fr; // Sidebar and main content
+    }
+  }
+
+  &__sidebar {
+    display: none;
+
+    background-color: #fafafa;
+
+    @include respond-to('tabletAndUp') {
+      display: block;
+    }
+  }
+
+  // Book list styles
+  &__book-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  &__book-item {
+    display: grid;
+    grid-template-rows: auto 1fr auto; // Cover, details, and actions
+    padding: 1rem;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+  }
+}

@@ -1,15 +1,15 @@
-<div>
+<div class="user-books-page">
   <!-- Breadcrumb -->
-  <nav class="breadcrumb">
+  <nav class="user-books-page__breadcrumb">
     <a href="/">Home</a> / My Books
   </nav>
   <!-- my books header -->
-  <header class="page-title">
+  <header class="user-books-page__header">
     <h1>My Books</h1>
     <div> books image goes here </div>
   </header>
   <!-- Filters and Sorting Controls -->
-  <section>
+  <section class="user-books-page__controls">
     <button>Filter</button> <!-- Toggle for mobile -->
     <button>Search</button>
     <button>List</button>
@@ -17,7 +17,52 @@
     <div>Date Filter</div>
     <div>Sort By</div>
   </section>
-  <!-- Main Content Area -->
-  <main>
-  </main>
+  <!-- Main Content Wrapper for Sidebar and Book Items -->
+  <div class="user-books-page__content">
+    <aside class="user-books-page__sidebar">
+      <h2>Your Shelves</h2>
+      <ul class="">
+        <li><input type="checkbox" /> Show all (104)</li>
+        <li><input type="checkbox" /> Currently reading (2)</li>
+        <li><input type="checkbox" /> Want to read (14)</li>
+      </ul>
+      <button class="">Add new shelf</button>
+    </aside>
+    <!-- Main Book List Section -->
+    <section class="user-books-page__book-list">
+
+      <!-- Book Item 1 -->
+      <div class="user-books-page__book-item">
+        <%= image_tag "no_cover", class: "user-books-page__cover" %>
+        <div class="">
+          <h3 class="">The Dutch House</h3>
+          <p class="">by Ann Patchett</p>
+          <div class="">
+            <div class="">Rating: ★★★★☆</div>
+          </div>
+        </div>
+        <div class="">
+          <button class="">Finished reading</button>
+          <button class="">View Review</button>
+        </div>
+      </div>
+
+      <!-- Book Item 2 -->
+      <div class="user-books-page__book-item">
+        <%= image_tag "no_cover", class: "" %>
+        <div class="">
+          <h3 class="">The Invisible Life of Addie LaRue</h3>
+          <p class="">by V.E. Schwab</p>
+          <div class="">
+            <div class="">Rating: ★★★★☆</div>
+          </div>
+        </div>
+        <div class="">
+          <button class="">Finished reading</button>
+          <button class="">View Review</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
 </div>
