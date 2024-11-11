@@ -1,18 +1,51 @@
 <div class="book-card">
-  <div class="book-card__cover"> <!-- Cover -->
-    <%= image_tag "no_cover" %>
+  <div class="book-card__cover">
+    <%= image_tag "book_cover", class: "book-card__cover-img" %>
   </div>
-  <div class="book-card__title"> <!-- Title and Author -->
-    <h2>The Dutch House</h2>
-    <p>by Ann Patchett</p>
+  <div class="book-card__title">
+    <h2 class="book-card__book-name">The Invisible Life of Addie LaRue</h2>
+    <p class="book-card__author">by Ann Patchett</p>
   </div>
-  <div class="book-card__info"> <!-- Info Content -->
-    <div>Rating: ★★★★☆</div>
-    <div>Genres: Fiction, Historical</div>
-    <div>Bookshelves: Finished Reading</div>
-    <p>Note: This is an amazing book!</p>
+  <div class="book-card__info">
+    <%# <div class="book-details__table">
+      <div class="book-details__cell">
+        <div class="book-details__cell--header">Rating</div>
+        <div class="book-details__cell--content">★★★★★</div>
+      </div>
+      <div class="book-details__cell">
+        <div class="book-details__cell--header">Format</div>
+        <div class="book-details__cell--content">ebook</div>
+      </div>
+      <div class="book-details__cell">
+        <div class="book-details__cell--header">Date Added</div>
+        <div class="book-details__cell--content">12-12-2023</div>
+      </div>
+      <div class="book-details__cell">
+        <div class="book-details__cell--header">Date Started</div>
+        <div class="book-details__cell--content">12-12-2023</div>
+      </div>
+      <div class="book-details__cell">
+        <div class="book-details__cell--header">Date Read</div>
+        <div class="book-details__cell--content">12-12-2023</div>
+      </div>
+    </div> %>
+    <div class="scrollable-container">
+      This is a long sentence that will take up the full width of the container on larger screens, but on mobile, it will overflow and allow horizontal scrolling.
+    </div>
+    <div class="book-card__info-item">
+      <div class="book-card__info-item-title">Genres:</div>
+      <div class="book-card__info-item-content">Psychological Fiction / LGBT literature</div>
+    </div>
+    <div class="book-card__info-item">
+      <div class="book-card__info-item-title">Bookshelves:</div>
+      <div class="book-card__info-item-content">Favorites of 2025</div>
+    </div>
+    <div class="book-card__info-item">
+      <div class="book-card__info-item-title">Note:</div>
+      <div class="book-card__info-item-content">This is an amazing book!</div>
+    </div>
   </div>
-  <div class="book-card__controls"> <!-- Controls -->
+  <div class="book-card__controls">
     <button>Finished Reading</button>
     <button>View Review</button>
   </div>

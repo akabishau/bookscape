@@ -1,0 +1,184 @@
+.book-card {
+  padding: 24px 16px;
+
+  border: 0px solid var(--Gray-200, #bababe);
+  background: var(--White, #f9fafa);
+
+  /* Shadow/sm */
+  box-shadow: 0px 1px 3px 0px rgba(16, 24, 40, 0.1),
+    0px 1px 2px 0px rgba(16, 24, 40, 0.06);
+
+  display: grid;
+  // Mobile layout
+  grid-template-areas:
+    'cover title'
+    'info info'
+    'controls controls';
+  grid-template-columns: auto 1fr; // intrinsic width of cover + rest
+  // grid-template-rows: auto auto auto;
+  gap: 24px;
+
+  @include respond-to('tabletAndUp') {
+    // Tablet and up layout
+    grid-template-areas:
+      'cover title'
+      'cover info'
+      'controls info';
+    // can also do 'controls info info info info' to controls the space taken by elements
+    grid-template-columns: 1fr 3fr; // Cover takes 1/4 width, title and info take 3/4 width
+  }
+
+  @include respond-to('desktopAndUp') {
+    // Optional: Refine layout for larger screens if needed
+  }
+
+  &__cover {
+    grid-area: cover;
+  }
+
+  &__cover-img {
+    // width: 92px;
+    height: 138px;
+
+    border-radius: 4px 1px 1px 4px;
+
+    object-fit: cover;
+
+    @include respond-to('tabletAndUp') {
+      width: 224px;
+      height: 336px;
+
+      border-radius: 8px 2px 2px 8px;
+    }
+  }
+
+  &__title {
+    grid-area: title;
+  }
+
+  &__book-name {
+    align-self: stretch;
+
+    color: var(--Black, #18191c);
+
+    /* Literata/Display sm/Regular */
+    font-family: Literata;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 38px; /* 126.667% */
+  }
+
+  &__author {
+    color: var(--Gray-700, #4b4b51);
+
+    /* Inter/Text md/Regular */
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+  }
+
+  &__info {
+    grid-area: info;
+    display: grid;
+    gap: 24px;
+    margin: 24px 0;
+  }
+
+  &__info-item {
+    display: grid;
+    // gap: 24px;
+  }
+
+  &__info-item-title {
+    color: var(--Black, #18191c);
+
+    /* Inter/Text md/Regular */
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 150% */
+  }
+
+  &__info-item-content {
+    color: var(--Black, #18191c);
+
+    /* Inter/Text md/Regular */
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  &__controls {
+    grid-area: controls;
+    display: grid;
+    gap: 24px;
+  }
+}
+
+.scrollable-container {
+  overflow-x: auto; // Enable horizontal scrolling on mobile
+  white-space: nowrap; // Prevent the content from wrapping, ensuring it scrolls horizontally
+  padding: 1rem;
+  height: 100px;
+  background-color: pink;
+
+  @include respond-to('tabletAndUp') {
+    width: 100%; // Take full width on tablet and up
+    overflow-x: hidden; // Disable horizontal scrolling on larger screens
+    white-space: normal; // Allow content to wrap on larger screens
+  }
+}
+
+.book-details {
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+
+  &__table {
+    display: grid;
+    grid-template-columns: repeat(
+      5,
+      minmax(100px, 1fr)
+    ); // 5 columns with equal widths on desktop
+
+    @include respond-to('tabletAndUp') {
+      grid-template-columns: repeat(
+        5,
+        1fr
+      ); // Equal columns on larger screens without scroll
+    }
+
+    @include respond-to('mobile') {
+      overflow-x: auto; // Enable horizontal scroll on mobile
+      display: flex;
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__cell {
+    padding: 1rem;
+    text-align: center;
+    min-width: 120px; // Set minimum width for mobile scrolling
+    // display: flex;
+    width: 128px;
+    padding: 8px;
+    // flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+
+    border-right: 1px solid var(--Gray-200, #bababe);
+
+    &--header {
+      font-weight: bold;
+      color: #333;
+    }
+  }
+}
