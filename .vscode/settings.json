@@ -25,6 +25,9 @@
   "files.trimTrailingWhitespace": true,
   "files.trimFinalNewlines": true,
   "files.autoSave": "onFocusChange",
+  "files.associations": {
+    "*.html.erb": "erb"
+  },
 
   "files.exclude": {
     "**/.git": true,
@@ -54,12 +57,12 @@
   "rubyLsp.formatter": "auto",
   "rubyLsp.linters": ["rubocop"],
 
-  "files.associations": {
-    "*.html.erb": "erb"
-  },
-
   "[erb]": {
     "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
     "editor.formatOnSave": true
+  },
+
+  "vscode-erb-beautify.customEnvVar": {
+    "LC_ALL": "en_US.UTF-8"
   }
 }
