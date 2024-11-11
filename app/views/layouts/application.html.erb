@@ -15,10 +15,10 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
   <body>
-    <%= render 'layouts/header' %>
+    <%= render "layouts/header" %>
     <div class="content-container">
       <%= yield %>
     </div>
-    <%= render 'layouts/footer' %>
+    <%= render "layouts/footer" %>
   </body>
 </html>
