@@ -30,36 +30,11 @@
     </aside>
     <!-- Main Book List Section -->
     <section class="user-books-page__book-list">
-      <!-- Book Item 1 -->
-      <div class="user-books-page__book-item">
-        <%= image_tag "no_cover", class: "user-books-page__cover" %>
-        <div class="">
-          <h3 class="">The Dutch House</h3>
-          <p class="">by Ann Patchett</p>
-          <div class="">
-            <div class="">Rating: ★★★★☆</div>
-          </div>
+      <% 4.times do %>
+        <div class="user-book user-book-card">
+          <%= render partial: "user_book" %>
         </div>
-        <div class="">
-          <button class="">Finished reading</button>
-          <button class="">View Review</button>
-        </div>
-      </div>
-      <!-- Book Item 2 -->
-      <div class="user-books-page__book-item">
-        <%= image_tag "no_cover", class: "" %>
-        <div class="">
-          <h3 class="">The Invisible Life of Addie LaRue</h3>
-          <p class="">by V.E. Schwab</p>
-          <div class="">
-            <div class="">Rating: ★★★★☆</div>
-          </div>
-        </div>
-        <div class="">
-          <button class="">Finished reading</button>
-          <button class="">View Review</button>
-        </div>
-      </div>
+      <% end %>
     </section>
   </div>
 </div>
